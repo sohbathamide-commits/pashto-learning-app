@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -23,6 +23,14 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+
+      - name: Create Android project
+        run: |
+          cp lib/main.dart /tmp/main.dart
+          cp pubspec.yaml /tmp/pubspec.yaml
+          flutter create --project-name pashto_learning_app --org com.pashto.learning --platforms=android .
+          cp /tmp/main.dart lib/main.dart
+          cp /tmp/pubspec.yaml pubspec.yaml
 
       - name: Get dependencies
         run: flutter pub get
