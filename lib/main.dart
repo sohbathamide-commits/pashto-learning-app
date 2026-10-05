@@ -14,7 +14,7 @@ class PashtoLearningApp extends StatelessWidget {
       title: 'پښتو زده کړه',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
+        fontFamily: 'Arial',
       ),
       home: const HomePage(),
     );
@@ -26,19 +26,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subjects = [
-      ['ریاضي', Icons.calculate],
-      ['ساینس', Icons.science],
-      ['عمومي معلومات', Icons.public],
-      ['Quiz', Icons.quiz],
-    ];
-
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'پښتو زده کړه 📚',
+            'پښتو تعلیمي اپ',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -46,86 +39,102 @@ class HomePage extends StatelessWidget {
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'ښه راغلاست! 👋',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'هره ورځ یو نوی شی زده کړه.',
-                      style: TextStyle(fontSize: 17),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
             const Text(
-              'د زده کړې برخې',
+              'ښه راغلاست! 👋',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
 
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: subjects.length,
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemBuilder: (context, index) {
-                return Card(
-                  child: InkWell(
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            '${subjects[index][0]} برخه به ژر اضافه شي.',
-                          ),
-                        ),
-                      );
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          subjects[index][1] as IconData,
-                          size: 45,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          subjects[index][0] as String,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+            const Text(
+              'په اسانه او خوندوره طریقه زده کړه پیل کړه.',
+              style: TextStyle(fontSize: 18),
+            ),
+
+            const SizedBox(height: 25),
+
+            _lessonCard(
+              context,
+              '📚',
+              'پښتو الفبا',
+              'د پښتو توري زده کړه',
+              Colors.blue,
+            ),
+
+            _lessonCard(
+              context,
+              '🔢',
+              'ریاضي',
+              'شمېرې او ساده حسابونه زده کړه',
+              Colors.green,
+            ),
+
+            _lessonCard(
+              context,
+              '🌍',
+              'عمومي معلومات',
+              'نوي او ګټور معلومات زده کړه',
+              Colors.orange,
+            ),
+
+            _lessonCard(
+              context,
+              '🧠',
+              'پوښتنې او ځوابونه',
+              'خپل معلومات وازمویه',
+              Colors.purple,
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _lessonCard(
+    BuildContext context,
+    String icon,
+    String title,
+    String subtitle,
+    Color color,
+  ) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 15),
+      elevation: 4,
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(15),
+        leading: CircleAvatar(
+          radius: 28,
+          backgroundColor: color,
+          child: Text(
+            icon,
+            style: const TextStyle(fontSize: 25),
+          ),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(
+            subtitle,
+            style: const TextStyle(fontSize: 15),
+          ),
+        ),
+        trailing: const Icon(Icons.arrow_back_ios),
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('$title ژر به فعال شي 🚀'),
+            ),
+          );
+        },
       ),
     );
   }
