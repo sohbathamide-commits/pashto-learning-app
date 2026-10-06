@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const PashtoLearningApp());
+  runApp(const MyApp());
 }
 
-class PashtoLearningApp extends StatelessWidget {
-  const PashtoLearningApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'پښتو زده کړه',
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'Arial',
-      ),
       home: const HomePage(),
     );
   }
@@ -30,10 +26,7 @@ class HomePage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'پښتو تعلیمي اپ',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: const Text('پښتو تعلیمي اپ'),
           centerTitle: true,
         ),
         body: ListView(
@@ -46,106 +39,69 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'په اسانه او خوندوره طریقه زده کړه پیل کړه.',
-              style: TextStyle(fontSize: 18),
-            ),
+
             const SizedBox(height: 25),
 
-            _lessonCard(
-              context,
-              '📚',
-              'پښتو الفبا',
-              'د پښتو توري زده کړه',
-              Colors.blue,
-              true,
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '📚',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'پښتو الفبا',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: const Text('د پښتو توري زده کړه'),
+                trailing: const Icon(Icons.arrow_back_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AlphabetPage(),
+                    ),
+                  );
+                },
+              ),
             ),
 
-            _lessonCard(
-              context,
-              '🔢',
-              'ریاضي',
-              'شمېرې او ساده حسابونه زده کړه',
-              Colors.green,
-              false,
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🔢',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text('ریاضي'),
+                subtitle: const Text('ډېر ژر به فعال شي 🚀'),
+              ),
             ),
 
-            _lessonCard(
-              context,
-              '🌍',
-              'عمومي معلومات',
-              'نوي او ګټور معلومات زده کړه',
-              Colors.orange,
-              false,
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🌍',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text('عمومي معلومات'),
+                subtitle: const Text('ډېر ژر به فعال شي 🚀'),
+              ),
             ),
 
-            _lessonCard(
-              context,
-              '🧠',
-              'پوښتنې او ځوابونه',
-              'خپل معلومات وازمویه',
-              Colors.purple,
-              false,
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🧠',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text('پوښتنې او ځوابونه'),
+                subtitle: const Text('ډېر ژر به فعال شي 🚀'),
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _lessonCard(
-    BuildContext context,
-    String icon,
-    String title,
-    String subtitle,
-    Color color,
-    bool active,
-  ) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 15),
-      elevation: 4,
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(15),
-        leading: CircleAvatar(
-          radius: 28,
-          backgroundColor: color,
-          child: Text(
-            icon,
-            style: const TextStyle(fontSize: 25),
-          ),
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: Text(
-            subtitle,
-            style: const TextStyle(fontSize: 15),
-          ),
-        ),
-        trailing: const Icon(Icons.arrow_back_ios),
-        onTap: () {
-          if (active) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const AlphabetPage(),
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('$title ډېر ژر به فعال شي 🚀'),
-              ),
-            );
-          }
-        },
       ),
     );
   }
@@ -154,7 +110,7 @@ class HomePage extends StatelessWidget {
 class AlphabetPage extends StatelessWidget {
   const AlphabetPage({super.key});
 
-  static const List<String> letters = [
+  static const letters = [
     'ا',
     'ب',
     'پ',
@@ -212,4 +168,27 @@ class AlphabetPage extends StatelessWidget {
         body: GridView.builder(
           padding: const EdgeInsets.all(16),
           gridDelegate:
-              const
+              const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: letters.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Center(
+                child: Text(
+                  letters[index],
+                  style: const TextStyle(
+                    fontSize: 38,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
