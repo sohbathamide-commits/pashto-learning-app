@@ -46,14 +46,11 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 8),
-
             const Text(
               'په اسانه او خوندوره طریقه زده کړه پیل کړه.',
               style: TextStyle(fontSize: 18),
             ),
-
             const SizedBox(height: 25),
 
             _lessonCard(
@@ -62,6 +59,7 @@ class HomePage extends StatelessWidget {
               'پښتو الفبا',
               'د پښتو توري زده کړه',
               Colors.blue,
+              true,
             ),
 
             _lessonCard(
@@ -70,6 +68,7 @@ class HomePage extends StatelessWidget {
               'ریاضي',
               'شمېرې او ساده حسابونه زده کړه',
               Colors.green,
+              false,
             ),
 
             _lessonCard(
@@ -78,6 +77,7 @@ class HomePage extends StatelessWidget {
               'عمومي معلومات',
               'نوي او ګټور معلومات زده کړه',
               Colors.orange,
+              false,
             ),
 
             _lessonCard(
@@ -86,6 +86,7 @@ class HomePage extends StatelessWidget {
               'پوښتنې او ځوابونه',
               'خپل معلومات وازمویه',
               Colors.purple,
+              false,
             ),
           ],
         ),
@@ -99,6 +100,7 @@ class HomePage extends StatelessWidget {
     String title,
     String subtitle,
     Color color,
+    bool active,
   ) {
     return Card(
       margin: const EdgeInsets.only(bottom: 15),
@@ -129,13 +131,75 @@ class HomePage extends StatelessWidget {
         ),
         trailing: const Icon(Icons.arrow_back_ios),
         onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('$title ژر به فعال شي 🚀'),
-            ),
-          );
+          if (active) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const AlphabetPage(),
+              ),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('$title ډېر ژر به فعال شي 🚀'),
+              ),
+            );
+          }
         },
       ),
     );
   }
 }
+
+class AlphabetPage extends StatelessWidget {
+  const AlphabetPage({super.key});
+
+  static const List<String> letters = [
+    'ا',
+    'ب',
+    'پ',
+    'ت',
+    'ټ',
+    'ث',
+    'ج',
+    'ځ',
+    'چ',
+    'څ',
+    'ح',
+    'خ',
+    'د',
+    'ډ',
+    'ذ',
+    'ر',
+    'ړ',
+    'ز',
+    'ژ',
+    'ږ',
+    'س',
+    'ش',
+    'ښ',
+    'ص',
+    'ض',
+    'ط',
+    'ظ',
+    'ع',
+    'غ',
+    'ف',
+    'ق',
+    'ک',
+    'ګ',
+    'ل',
+    'م',
+    'ن',
+    'ڼ',
+    'و',
+    'ه',
+    'ي',
+    'ې',
+    'ۍ',
+    'ئ',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return
