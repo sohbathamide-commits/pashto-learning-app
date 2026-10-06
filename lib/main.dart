@@ -202,4 +202,14 @@ class AlphabetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('پښتو الفبا'),
+          centerTitle: true,
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate:
+              const
