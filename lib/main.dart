@@ -101,8 +101,8 @@ class AlphabetPage extends StatefulWidget {
 }
 
 class _AlphabetPageState extends State<AlphabetPage> {
-  final FlutterTts tts = FlutterTts();
-
+  
+final AudioPlayer player = AudioPlayer();
   final List<List<String>> letters = [
     ['ا', 'انار'],
     ['ب', 'بوره'],
