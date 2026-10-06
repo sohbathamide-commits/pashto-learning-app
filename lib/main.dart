@@ -39,7 +39,6 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 25),
 
             Card(
@@ -70,10 +69,7 @@ class HomePage extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Text(
-                  '🔢',
-                  style: TextStyle(fontSize: 30),
-                ),
+                leading: const Text('🔢'),
                 title: const Text('ریاضي'),
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
@@ -81,10 +77,7 @@ class HomePage extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Text(
-                  '🌍',
-                  style: TextStyle(fontSize: 30),
-                ),
+                leading: const Text('🌍'),
                 title: const Text('عمومي معلومات'),
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
@@ -92,10 +85,7 @@ class HomePage extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Text(
-                  '🧠',
-                  style: TextStyle(fontSize: 30),
-                ),
+                leading: const Text('🧠'),
                 title: const Text('پوښتنې او ځوابونه'),
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
@@ -111,49 +101,49 @@ class AlphabetPage extends StatelessWidget {
   const AlphabetPage({super.key});
 
   static const letters = [
-    'ا',
-    'ب',
-    'پ',
-    'ت',
-    'ټ',
-    'ث',
-    'ج',
-    'ځ',
-    'چ',
-    'څ',
-    'ح',
-    'خ',
-    'د',
-    'ډ',
-    'ذ',
-    'ر',
-    'ړ',
-    'ز',
-    'ژ',
-    'ږ',
-    'س',
-    'ش',
-    'ښ',
-    'ص',
-    'ض',
-    'ط',
-    'ظ',
-    'ع',
-    'غ',
-    'ف',
-    'ق',
-    'ک',
-    'ګ',
-    'ل',
-    'م',
-    'ن',
-    'ڼ',
-    'و',
-    'ه',
-    'ي',
-    'ې',
-    'ۍ',
-    'ئ',
+    ['ا', 'انار 🍎'],
+    ['ب', 'بوره 🍬'],
+    ['پ', 'پلار 👨'],
+    ['ت', 'توت 🫐'],
+    ['ټ', 'ټوپک'],
+    ['ث', 'ثواب'],
+    ['ج', 'جام 🥛'],
+    ['ځ', 'ځنګل 🌳'],
+    ['چ', 'چای ☕'],
+    ['څ', 'څاروی 🐄'],
+    ['ح', 'حوض'],
+    ['خ', 'خربوزه 🍈'],
+    ['د', 'دروازه 🚪'],
+    ['ډ', 'ډوډۍ 🍞'],
+    ['ذ', 'ذرت 🌽'],
+    ['ر', 'رنګ 🎨'],
+    ['ړ', 'وړانګه ☀️'],
+    ['ز', 'زلمی'],
+    ['ژ', 'ژمی ❄️'],
+    ['ږ', 'ږیره'],
+    ['س', 'سیب 🍎'],
+    ['ش', 'شګه'],
+    ['ښ', 'ښکلی'],
+    ['ص', 'صبر'],
+    ['ض', 'ضرر'],
+    ['ط', 'طوطی 🦜'],
+    ['ظ', 'ظرف'],
+    ['ع', 'عینکې 👓'],
+    ['غ', 'غر ⛰️'],
+    ['ف', 'فیل 🐘'],
+    ['ق', 'قلم ✏️'],
+    ['ک', 'کتاب 📖'],
+    ['ګ', 'ګل 🌹'],
+    ['ل', 'لمر ☀️'],
+    ['م', 'مڼه 🍎'],
+    ['ن', 'نارنج 🍊'],
+    ['ڼ', 'پاڼه 🍃'],
+    ['و', 'وطن 🏠'],
+    ['ه', 'هګۍ 🥚'],
+    ['ي', 'یخ ❄️'],
+    ['ې', 'ډېرې'],
+    ['ۍ', 'هګۍ 🥚'],
+    ['ئ', 'راځئ'],
   ];
 
   @override
@@ -176,12 +166,43 @@ class AlphabetPage extends StatelessWidget {
           itemCount: letters.length,
           itemBuilder: (context, index) {
             return Card(
-              child: Center(
-                child: Text(
-                  letters[index],
-                  style: const TextStyle(
-                    fontSize: 38,
-                    fontWeight: FontWeight.bold,
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text(
+                          letters[index][0],
+                          textAlign: TextAlign.center,
+                        ),
+                        content: Text(
+                          letters[index][1],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('بندول'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Center(
+                  child: Text(
+                    letters[index][0],
+                    style: const TextStyle(
+                      fontSize: 38,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
