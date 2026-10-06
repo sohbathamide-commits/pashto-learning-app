@@ -102,8 +102,8 @@ class AlphabetPage extends StatefulWidget {
 }
 
 class _AlphabetPageState extends State<AlphabetPage> {
-  
-final AudioPlayer player = AudioPlayer();
+  final AudioPlayer player = AudioPlayer();
+
   final List<List<String>> letters = [
     ['ا', 'انار'],
     ['ب', 'بوره'],
@@ -150,10 +150,17 @@ final AudioPlayer player = AudioPlayer();
     ['ئ', 'راځئ'],
   ];
 
-  Future<void> speak(String text) async {
-    await tts.setLanguage('ps-AF');
-    await tts.setSpeechRate(0.4);
-    await tts.speak(text);
+  Future<void> playAudio() async {
+    // د ازموینې لپاره
+    await player.play(
+      AssetSource('audio/test.mp3'),
+    );
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
 
   @override
@@ -180,9 +187,7 @@ final AudioPlayer player = AudioPlayer();
 
             return Card(
               child: InkWell(
-                onTap: () {
-                  speak('$letter، $word');
-                },
+                onTap: playAudio,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
