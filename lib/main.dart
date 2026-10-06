@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-
             Card(
               child: ListTile(
                 leading: const Text(
@@ -66,7 +66,6 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
-
             Card(
               child: ListTile(
                 leading: const Text('🔢'),
@@ -74,7 +73,6 @@ class HomePage extends StatelessWidget {
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
             ),
-
             Card(
               child: ListTile(
                 leading: const Text('🌍'),
@@ -82,7 +80,6 @@ class HomePage extends StatelessWidget {
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
             ),
-
             Card(
               child: ListTile(
                 leading: const Text('🧠'),
@@ -97,54 +94,67 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class AlphabetPage extends StatelessWidget {
+class AlphabetPage extends StatefulWidget {
   const AlphabetPage({super.key});
 
-  static const letters = [
-    ['ا', 'انار 🍎'],
-    ['ب', 'بوره 🍬'],
-    ['پ', 'پلار 👨'],
-    ['ت', 'توت 🫐'],
+  @override
+  State<AlphabetPage> createState() => _AlphabetPageState();
+}
+
+class _AlphabetPageState extends State<AlphabetPage> {
+  final FlutterTts tts = FlutterTts();
+
+  final List<List<String>> letters = [
+    ['ا', 'انار'],
+    ['ب', 'بوره'],
+    ['پ', 'پلار'],
+    ['ت', 'توت'],
     ['ټ', 'ټوپک'],
     ['ث', 'ثواب'],
-    ['ج', 'جام 🥛'],
-    ['ځ', 'ځنګل 🌳'],
-    ['چ', 'چای ☕'],
-    ['څ', 'څاروی 🐄'],
+    ['ج', 'جام'],
+    ['ځ', 'ځنګل'],
+    ['چ', 'چای'],
+    ['څ', 'څاروی'],
     ['ح', 'حوض'],
-    ['خ', 'خربوزه 🍈'],
-    ['د', 'دروازه 🚪'],
-    ['ډ', 'ډوډۍ 🍞'],
-    ['ذ', 'ذرت 🌽'],
-    ['ر', 'رنګ 🎨'],
-    ['ړ', 'وړانګه ☀️'],
+    ['خ', 'خربوزه'],
+    ['د', 'دروازه'],
+    ['ډ', 'ډوډۍ'],
+    ['ذ', 'ذرت'],
+    ['ر', 'رنګ'],
+    ['ړ', 'وړانګه'],
     ['ز', 'زلمی'],
-    ['ژ', 'ژمی ❄️'],
+    ['ژ', 'ژمی'],
     ['ږ', 'ږیره'],
-    ['س', 'سیب 🍎'],
+    ['س', 'سیب'],
     ['ش', 'شګه'],
     ['ښ', 'ښکلی'],
     ['ص', 'صبر'],
     ['ض', 'ضرر'],
-    ['ط', 'طوطی 🦜'],
+    ['ط', 'طوطی'],
     ['ظ', 'ظرف'],
-    ['ع', 'عینکې 👓'],
-    ['غ', 'غر ⛰️'],
-    ['ف', 'فیل 🐘'],
-    ['ق', 'قلم ✏️'],
-    ['ک', 'کتاب 📖'],
-    ['ګ', 'ګل 🌹'],
-    ['ل', 'لمر ☀️'],
-    ['م', 'مڼه 🍎'],
-    ['ن', 'نارنج 🍊'],
-    ['ڼ', 'پاڼه 🍃'],
-    ['و', 'وطن 🏠'],
-    ['ه', 'هګۍ 🥚'],
-    ['ي', 'یخ ❄️'],
+    ['ع', 'عینکې'],
+    ['غ', 'غر'],
+    ['ف', 'فیل'],
+    ['ق', 'قلم'],
+    ['ک', 'کتاب'],
+    ['ګ', 'ګل'],
+    ['ل', 'لمر'],
+    ['م', 'مڼه'],
+    ['ن', 'نارنج'],
+    ['ڼ', 'پاڼه'],
+    ['و', 'وطن'],
+    ['ه', 'هګۍ'],
+    ['ي', 'یخ'],
     ['ې', 'ډېرې'],
-    ['ۍ', 'هګۍ 🥚'],
+    ['ۍ', 'هګۍ'],
     ['ئ', 'راځئ'],
   ];
+
+  Future<void> speak(String text) async {
+    await tts.setLanguage('ps-AF');
+    await tts.setSpeechRate(0.4);
+    await tts.speak(text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +162,7 @@ class AlphabetPage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('پښتو الفبا'),
+          title: const Text('پښتو الفبا 🔊'),
           centerTitle: true,
         ),
         body: GridView.builder(
@@ -165,45 +175,32 @@ class AlphabetPage extends StatelessWidget {
           ),
           itemCount: letters.length,
           itemBuilder: (context, index) {
+            final letter = letters[index][0];
+            final word = letters[index][1];
+
             return Card(
               child: InkWell(
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text(
-                          letters[index][0],
-                          textAlign: TextAlign.center,
-                        ),
-                        content: Text(
-                          letters[index][1],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('بندول'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  speak('$letter، $word');
                 },
-                child: Center(
-                  child: Text(
-                    letters[index][0],
-                    style: const TextStyle(
-                      fontSize: 38,
-                      fontWeight: FontWeight.bold,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      letter,
+                      style: const TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 5),
+                    Text(
+                      word,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 5),
+                    const Icon(Icons.volume_up),
+                  ],
                 ),
               ),
             );
