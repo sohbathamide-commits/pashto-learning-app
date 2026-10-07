@@ -41,6 +41,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
+
+            // پښتو الفبا
             Card(
               child: ListTile(
                 leading: const Text(
@@ -66,31 +68,36 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
+
+            // ریاضي
             Card(
-  child: ListTile(
-    leading: const Text(
-      '🔢',
-      style: TextStyle(fontSize: 30),
-    ),
-    title: const Text(
-      'ریاضي',
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    subtitle: const Text('شمېرې، جمع، تفریق، ضرب او تقسیم'),
-    trailing: const Icon(Icons.arrow_back_ios),
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MathPage(),
-        ),
-      );
-    },
-  ),
-),
+              child: ListTile(
+                leading: const Text(
+                  '🔢',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'ریاضي',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: const Text(
+                  'له ۱ تر ۱۰۰ پورې شمېرې',
+                ),
+                trailing: const Icon(Icons.arrow_back_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MathPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+
             Card(
               child: ListTile(
                 leading: const Text('🌍'),
@@ -98,6 +105,7 @@ class HomePage extends StatelessWidget {
                 subtitle: const Text('ډېر ژر به فعال شي 🚀'),
               ),
             ),
+
             Card(
               child: ListTile(
                 leading: const Text('🧠'),
@@ -111,6 +119,8 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+// ==================== پښتو الفبا ====================
 
 class AlphabetPage extends StatefulWidget {
   const AlphabetPage({super.key});
@@ -148,7 +158,7 @@ class _AlphabetPageState extends State<AlphabetPage> {
     ['ښ', 'ښکلی'],
     ['ص', 'صبر'],
     ['ض', 'ضرر'],
-    ['ط', 'طوطی'],
+    ['ط', 'طوطي'],
     ['ظ', 'ظرف'],
     ['ع', 'عینکې'],
     ['غ', 'غر'],
@@ -169,125 +179,73 @@ class _AlphabetPageState extends State<AlphabetPage> {
   ];
 
   Future<void> playAudio() async {
-  await player.play(
-    AssetSource('audio/ok yes.m4a'),
-  );
+    await player.play(
+      AssetSource('audio/ok yes.m4a'),
+    );
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('پښتو الفبا 🔊'),
+          centerTitle: true,
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: letters.length,
+          itemBuilder: (context, index) {
+            final letter = letters[index][0];
+            final word = letters[index][1];
+
+            return Card(
+              child: InkWell(
+                onTap: index == 0 ? playAudio : null,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      letter,
+                      style: const TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      word,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 5),
+                    const Icon(Icons.volume_up),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
-  @override
-  void dispose() {
-    player.dispose();
-    super.dispose();
-  }
+// ==================== ریاضي ====================
 
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('پښتو الفبا 🔊'),
-          centerTitle: true,
-        ),
-        body: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: letters.length,
-          itemBuilder: (context, index) {
-            final letter = letters[index][0];
-            final word = letters[index][1];
-
-            return Card(
-              child: InkWell(
-                onTap: index == 0 ? playAudio : null,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      letter,
-                      style: const TextStyle(
-                        fontSize: 38,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      word,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 5),
-                    const Icon(Icons.volume_up),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }override
-  void dispose() {
-    player.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('پښتو الفبا 🔊'),
-          centerTitle: true,
-        ),
-        body: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: letters.length,
-          itemBuilder: (context, index) {
-            final letter = letters[index][0];
-            final word = letters[index][1];
-
-            return Card(
-              child: InkWell(
-                onTap: index == 0 ? playAudio : null,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      letter,
-                      style: const TextStyle(
-                        fontSize: 38,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      word,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 5),
-                    const Icon(Icons.volume_up),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}class MathPage extends StatelessWidget {
+class MathPage extends StatelessWidget {
   const MathPage({super.key});
 
   @override
@@ -327,3 +285,4 @@ class _AlphabetPageState extends State<AlphabetPage> {
       ),
     );
   }
+}
