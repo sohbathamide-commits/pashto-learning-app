@@ -155,11 +155,6 @@ class _AlphabetPageState extends State<AlphabetPage> {
     AssetSource('audio/ok yes.m4a'),
   );
 }
-    // د ازموینې لپاره
-    await player.play(
-      AssetSource('audio/test.mp3'),
-    );
-  }
 
   @override
   void dispose() {
