@@ -67,12 +67,30 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Card(
-              child: ListTile(
-                leading: const Text('🔢'),
-                title: const Text('ریاضي'),
-                subtitle: const Text('ډېر ژر به فعال شي 🚀'),
-              ),
-            ),
+  child: ListTile(
+    leading: const Text(
+      '🔢',
+      style: TextStyle(fontSize: 30),
+    ),
+    title: const Text(
+      'ریاضي',
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    subtitle: const Text('شمېرې، جمع، تفریق، ضرب او تقسیم'),
+    trailing: const Icon(Icons.arrow_back_ios),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MathPage(),
+        ),
+      );
+    },
+  ),
+),
             Card(
               child: ListTile(
                 leading: const Text('🌍'),
@@ -212,5 +230,100 @@ class _AlphabetPageState extends State<AlphabetPage> {
         ),
       ),
     );
+  }override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
-}
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('پښتو الفبا 🔊'),
+          centerTitle: true,
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: letters.length,
+          itemBuilder: (context, index) {
+            final letter = letters[index][0];
+            final word = letters[index][1];
+
+            return Card(
+              child: InkWell(
+                onTap: index == 0 ? playAudio : null,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      letter,
+                      style: const TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      word,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 5),
+                    const Icon(Icons.volume_up),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}class MathPage extends StatelessWidget {
+  const MathPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('ریاضي 🔢'),
+          centerTitle: true,
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: 100,
+          itemBuilder: (context, index) {
+            final number = index + 1;
+
+            return Card(
+              child: Center(
+                child: Text(
+                  '$number',
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
