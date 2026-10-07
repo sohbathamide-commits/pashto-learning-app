@@ -151,6 +151,10 @@ class _AlphabetPageState extends State<AlphabetPage> {
   ];
 
   Future<void> playAudio() async {
+  await player.play(
+    AssetSource('audio/ok yes.m4a'),
+  );
+}
     // د ازموینې لپاره
     await player.play(
       AssetSource('audio/test.mp3'),
@@ -187,7 +191,7 @@ class _AlphabetPageState extends State<AlphabetPage> {
 
             return Card(
               child: InkWell(
-                onTap: playAudio,
+                onTap: index == 0 ? playAudio : null,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
