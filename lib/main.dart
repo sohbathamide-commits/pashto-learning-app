@@ -257,30 +257,34 @@ class MathPage extends StatelessWidget {
           title: const Text('ریاضي 🔢'),
           centerTitle: true,
         ),
-        body: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: 100,
-          itemBuilder: (context, index) {
-            final number = index + 1;
+        body: Directionality(
+          textDirection: TextDirection.rtl,
+          child: GridView.builder(
+            padding: const EdgeInsets.all(16),
+            gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: 100,
+            itemBuilder: (context, index) {
+              final number = index + 1;
 
-            return Card(
-              child: Center(
-                child: Text(
-                  '$number',
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+              return Card(
+                child: Center(
+                  child: Text(
+                    '$number',
+                    textDirection: TextDirection.ltr,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
