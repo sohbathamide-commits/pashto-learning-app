@@ -309,8 +309,7 @@ class MathPage extends StatelessWidget {
       ),
     );
   }
-}
-// ==================== عمومي معلومات ====================
+}// ==================== عمومي معلومات ====================
 
 class GeneralInfoPage extends StatelessWidget {
   const GeneralInfoPage({super.key});
@@ -327,6 +326,7 @@ class GeneralInfoPage extends StatelessWidget {
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // حیوانات
             Card(
               child: ListTile(
                 leading: const Text(
@@ -339,9 +339,18 @@ class GeneralInfoPage extends StatelessWidget {
                 ),
                 subtitle: const Text('د حیواناتو په اړه زده کړه'),
                 trailing: const Icon(Icons.arrow_back_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AnimalsPage(),
+                    ),
+                  );
+                },
               ),
             ),
 
+            // بوټي او طبیعت
             Card(
               child: ListTile(
                 leading: const Text(
@@ -352,11 +361,12 @@ class GeneralInfoPage extends StatelessWidget {
                   'بوټي او طبیعت',
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: const Text('د طبیعت په اړه معلومات'),
+                subtitle: const Text('د طبیعت په اړه زده کړه'),
                 trailing: const Icon(Icons.arrow_back_ios),
               ),
             ),
 
+            // فضا
             Card(
               child: ListTile(
                 leading: const Text(
@@ -372,6 +382,7 @@ class GeneralInfoPage extends StatelessWidget {
               ),
             ),
 
+            // ساینس
             Card(
               child: ListTile(
                 leading: const Text(
@@ -387,6 +398,7 @@ class GeneralInfoPage extends StatelessWidget {
               ),
             ),
 
+            // هېوادونه
             Card(
               child: ListTile(
                 leading: const Text(
@@ -402,6 +414,7 @@ class GeneralInfoPage extends StatelessWidget {
               ),
             ),
 
+            // مشهور ځایونه
             Card(
               child: ListTile(
                 leading: const Text(
@@ -414,6 +427,125 @@ class GeneralInfoPage extends StatelessWidget {
                 ),
                 subtitle: const Text('د نړۍ مشهور ځایونه'),
                 trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// ==================== حیوانات ====================
+
+class AnimalsPage extends StatelessWidget {
+  const AnimalsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('حیوانات 🐘'),
+          centerTitle: true,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '🐘 فیل',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'فیل یو ډېر لوی ځمکنی حیوان دی. '
+                      'فیل اوږده خرطوم او لوی غوږونه لري.',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '🦁 زمری',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'زمری یو پیاوړی ځنګلي حیوان دی. '
+                      'زمری د خپل ځواک او غږ له امله مشهور دی.',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '🐰 سوی',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'سوی یو کوچنی حیوان دی. '
+                      'سوی اوږده غوږونه او چټکې پښې لري.',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '🐦 مرغه',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'مرغان وزرونه لري او ډېری مرغان الوتلی شي.',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
