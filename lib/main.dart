@@ -350,22 +350,29 @@ class GeneralInfoPage extends StatelessWidget {
               ),
             ),
 
-            // بوټي او طبیعت
-            Card(
-              child: ListTile(
-                leading: const Text(
-                  '🌱',
-                  style: TextStyle(fontSize: 30),
-                ),
-                title: const Text(
-                  'بوټي او طبیعت',
-                  style: TextStyle(fontSize: 20),
-                ),
-                subtitle: const Text('د طبیعت په اړه زده کړه'),
-                trailing: const Icon(Icons.arrow_back_ios),
-              ),
-            ),
-
+// بوټي او طبیعت
+Card(
+  child: ListTile(
+    leading: const Text(
+      '🌱',
+      style: TextStyle(fontSize: 30),
+    ),
+    title: const Text(
+      'بوټي او طبیعت',
+      style: TextStyle(fontSize: 20),
+    ),
+    subtitle: const Text('د بوټو، ونو، ګلانو او طبیعت په اړه زده کړه'),
+    trailing: const Icon(Icons.arrow_back_ios),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PlantsNaturePage(),
+        ),
+      );
+    },
+  ),
+),
             // فضا
             Card(
               child: ListTile(
@@ -639,6 +646,134 @@ class AnimalsPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       animal['info']!,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        height: 1.7,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+// ==================== بوټي او طبیعت ====================
+
+class PlantsNaturePage extends StatelessWidget {
+  const PlantsNaturePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final topics = [
+      {
+        'emoji': '🌳',
+        'name': 'ونې',
+        'info':
+            'ونې د طبیعت مهمه برخه ده. ونې موږ ته اکسیجن، مېوې، لرګي او سیوری راکوي. '
+            'ونې د هوا په پاکولو کې هم مرسته کوي.',
+      },
+      {
+        'emoji': '🌹',
+        'name': 'ګلان',
+        'info':
+            'ګلان د طبیعت ښکلا زیاتوي. ډېری ګلان ښکلي رنګونه او خوږ بوی لري. '
+            'مچۍ او نور حشرات د ګلانو له شاتو او ګردې څخه ګټه اخلي.',
+      },
+      {
+        'emoji': '🌱',
+        'name': 'نباتات',
+        'info':
+            'نباتات د ودې لپاره اوبه، هوا، رڼا او مناسب چاپېریال ته اړتیا لري. '
+            'ډېری نباتات د لمر د رڼا په مرسته خپل خواړه جوړوي.',
+      },
+      {
+        'emoji': '🍎',
+        'name': 'مېوې',
+        'info':
+            'مېوې د ډېرو نباتاتو له ګلانو څخه جوړېږي. '
+            'مېوې انسانانو ته مهم ویټامینونه او نور ګټور مواد ورکوي.',
+      },
+      {
+        'emoji': '🌾',
+        'name': 'فصلونه',
+        'info':
+            'غنم، جوار، وریجې او نور فصلونه د انسانانو د خوړو لپاره کرل کېږي. '
+            'کرنه د خلکو لپاره ډېره مهمه ده.',
+      },
+      {
+        'emoji': '💧',
+        'name': 'اوبه',
+        'info':
+            'اوبه د انسانانو، حیواناتو او نباتاتو لپاره ډېرې مهمې دي. '
+            'د ژوند ډېری موجودات د ژوند لپاره اوبو ته اړتیا لري.',
+      },
+      {
+        'emoji': '☀️',
+        'name': 'لمر',
+        'info':
+            'لمر موږ ته رڼا او تودوخه راکوي. '
+            'نباتات د لمر د رڼا په مرسته خپل خواړه جوړوي. '
+            'لمر د ځمکې د ژوند لپاره ډېر مهم دی.',
+      },
+      {
+        'emoji': '🌧️',
+        'name': 'باران',
+        'info':
+            'باران هغه وخت کېږي چې د ورېځو اوبه بېرته ځمکې ته راولوېږي. '
+            'باران د کرنې، سیندونو او نباتاتو لپاره مهم دی.',
+      },
+      {
+        'emoji': '🌈',
+        'name': 'رنګین کمان',
+        'info':
+            'رنګین کمان معمولاً د باران وروسته هغه وخت ښکاري چې د لمر رڼا د اوبو له وړو څاڅکو سره یوځای شي. '
+            'په رنګین کمان کې بېلابېل رنګونه لیدل کېږي.',
+      },
+      {
+        'emoji': '🏔️',
+        'name': 'غرونه',
+        'info':
+            'غرونه د ځمکې لوړې برخې دي. '
+            'ځینې غرونه د کال په ډېرو میاشتو کې واوره لري. '
+            'غرونه د اوبو د سرچینو لپاره هم مهم دي.',
+      },
+    ];
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('بوټي او طبیعت 🌱'),
+          centerTitle: true,
+        ),
+        body: ListView.builder(
+          padding: const EdgeInsets.all(12),
+          itemCount: topics.length,
+          itemBuilder: (context, index) {
+            final topic = topics[index];
+
+            return Card(
+              margin: const EdgeInsets.only(bottom: 12),
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${topic['emoji']} ${topic['name']}',
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      topic['info']!,
                       style: const TextStyle(
                         fontSize: 17,
                         height: 1.7,
