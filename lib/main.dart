@@ -373,22 +373,31 @@ Card(
     },
   ),
 ),
-            // فضا
-            Card(
-              child: ListTile(
-                leading: const Text(
-                  '🚀',
-                  style: TextStyle(fontSize: 30),
-                ),
-                title: const Text(
-                  'فضا او سیارې',
-                  style: TextStyle(fontSize: 20),
-                ),
-                subtitle: const Text('لمر، سپوږمۍ او سیارې'),
-                trailing: const Icon(Icons.arrow_back_ios),
-              ),
-            ),
-
+// فضا
+Card(
+  child: ListTile(
+    leading: const Text(
+      '🚀',
+      style: TextStyle(fontSize: 30),
+    ),
+    title: const Text(
+      'فضا او سیارې',
+      style: TextStyle(fontSize: 20),
+    ),
+    subtitle: const Text(
+      'لمر، سپوږمۍ، ځمکه او د لمریز نظام سیارې',
+    ),
+    trailing: const Icon(Icons.arrow_back_ios),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SpacePage(),
+        ),
+      );
+    },
+  ),
+),
             // ساینس
             Card(
               child: ListTile(
@@ -748,6 +757,147 @@ class PlantsNaturePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('بوټي او طبیعت 🌱'),
+          centerTitle: true,
+        ),
+        body: ListView.builder(
+          padding: const EdgeInsets.all(12),
+          itemCount: topics.length,
+          itemBuilder: (context, index) {
+            final topic = topics[index];
+
+            return Card(
+              margin: const EdgeInsets.only(bottom: 12),
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${topic['emoji']} ${topic['name']}',
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      topic['info']!,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        height: 1.7,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+// ==================== فضا او سیارې ====================
+
+class SpacePage extends StatelessWidget {
+  const SpacePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final topics = [
+      {
+        'emoji': '☀️',
+        'name': 'لمر',
+        'info':
+            'لمر زموږ د لمریز نظام مرکز دی. '
+            'لمر موږ ته رڼا او تودوخه راکوي. '
+            'ځمکه او نورې سیارې د لمر شاوخوا ګرځي.',
+      },
+      {
+        'emoji': '🌍',
+        'name': 'ځمکه',
+        'info':
+            'ځمکه هغه سیاره ده چې موږ پکې ژوند کوو. '
+            'ځمکه اوبه، هوا، غرونه، سمندرونه او د ژوند لپاره مناسب چاپېریال لري.',
+      },
+      {
+        'emoji': '🌙',
+        'name': 'سپوږمۍ',
+        'info':
+            'سپوږمۍ د ځمکې طبیعي ملګرې ده او د ځمکې شاوخوا ګرځي. '
+            'سپوږمۍ خپله رڼا نه جوړوي، بلکې د لمر رڼا منعکسوي.',
+      },
+      {
+        'emoji': '🔴',
+        'name': 'مریخ',
+        'info':
+            'مریخ ته د سورې سیارې نوم هم ورکول کېږي، ځکه د سطحې رنګ یې سور ښکاري. '
+            'مریخ د لمر شاوخوا ګرځي او دوه کوچنۍ سپوږمۍ لري.',
+      },
+      {
+        'emoji': '🟠',
+        'name': 'مشتري',
+        'info':
+            'مشتري د لمریز نظام تر ټولو لویه سیاره ده. '
+            'دا یوه ډېره لویه ګازي سیاره ده او ډېرې سپوږمۍ لري.',
+      },
+      {
+        'emoji': '💍',
+        'name': 'زحل',
+        'info':
+            'زحل د خپلو ښکلو کړیو له امله ډېر مشهور دی. '
+            'دا هم یوه لویه ګازي سیاره ده او ډېرې سپوږمۍ لري.',
+      },
+      {
+        'emoji': '🔵',
+        'name': 'اورانوس',
+        'info':
+            'اورانوس یوه ډېره سړه او لرې سیاره ده. '
+            'دا د لمر شاوخوا په ډېرې اوږدې لارې ګرځي او ځانګړي کړۍ هم لري.',
+      },
+      {
+        'emoji': '🔵',
+        'name': 'نپتون',
+        'info':
+            'نپتون د لمریز نظام له تر ټولو لرې لویو سیارو څخه دی. '
+            'دا یوه سړه، تیاره او ډېره لرې سیاره ده.',
+      },
+      {
+        'emoji': '☄️',
+        'name': 'دنباله دار',
+        'info':
+            'دنباله دار د یخ، دوړو او ډبرو له موادو جوړ اسماني جسم دی. '
+            'کله چې لمر ته نږدې شي، روښانه لکۍ یې ښکاره کېدای شي.',
+      },
+      {
+        'emoji': '⭐',
+        'name': 'ستوري',
+        'info':
+            'ستوري ډېر لوی او ګرم اسماني جسمونه دي چې خپله رڼا تولیدوي. '
+            'لمر هم یو ستوری دی. ستوري د شپې په اسمان کې د وړو رڼاوو په څېر ښکاري.',
+      },
+      {
+        'emoji': '🌌',
+        'name': 'کهکشان',
+        'info':
+            'کهکشان د ستورو، ګازونو او دوړو یوه ډېره لویه ټولګه ده. '
+            'زموږ ځمکه د شیدو لارې په نوم په یوه کهکشان کې ده.',
+      },
+      {
+        'emoji': '🚀',
+        'name': 'فضايي بېړۍ',
+        'info':
+            'فضايي بېړۍ د فضا د سفر او څېړنې لپاره کارول کېږي. '
+            'انسانانو د فضايي بېړیو په وسیله سپوږمۍ ته سفر کړی او د فضا په اړه یې ډېر معلومات ترلاسه کړي.',
+      },
+    ];
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('فضا او سیارې 🚀'),
           centerTitle: true,
         ),
         body: ListView.builder(
