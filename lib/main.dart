@@ -436,7 +436,6 @@ class GeneralInfoPage extends StatelessWidget {
   }
 }
 
-
 // ==================== حیوانات ====================
 
 class AnimalsPage extends StatelessWidget {
@@ -444,111 +443,212 @@ class AnimalsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final animals = [
+      {
+        'emoji': '🐘',
+        'name': 'فیل',
+        'info':
+            'فیل د نړۍ له تر ټولو لویو ځمکنیو حیواناتو څخه دی. '
+            'اوږد خرطوم او لوی غوږونه لري. '
+            'فیل واښه، پاڼې، مېوې او بوټي خوري. '
+            'فیلان ډېر هوښیار او ټولنیز حیوانات دي.',
+      },
+      {
+        'emoji': '🦁',
+        'name': 'زمری',
+        'info':
+            'زمری یو پیاوړی غوښه خوړونکی حیوان دی. '
+            'زیاتره زمریان په افریقا کې ژوند کوي. '
+            'زمریان په ډلو کې ژوند کوي او د ښکار لپاره یوځای کار کوي. '
+            'نر زمری د غاړې ښکلی یال لري.',
+      },
+      {
+        'emoji': '🐯',
+        'name': 'پړانګ',
+        'info':
+            'پړانګ یو لوی او ځواکمن غوښه خوړونکی حیوان دی. '
+            'د بدن پر مخ ځانګړې تورې کرښې لري. '
+            'پړانګان عموماً یوازې ژوند کوي او ډېر ښه لامبو هم کولی شي.',
+      },
+      {
+        'emoji': '🐻',
+        'name': 'خرس',
+        'info':
+            'خرس یو لوی ځنګلي حیوان دی. '
+            'د خرس ځینې ډولونه مېوې، شات، بوټي او کبان خوري. '
+            'خرس د ژمي په موسم کې د اوږدې استراحت دورې ته ځي.',
+      },
+      {
+        'emoji': '🐺',
+        'name': 'لیوه',
+        'info':
+            'لیوه یو هوښیار ځنګلي حیوان دی. '
+            'لیوان اکثره په ډلو کې ژوند کوي او یوځای ښکار کوي. '
+            'دوی د یو بل سره د غږونو له لارې اړیکه نیسي.',
+      },
+      {
+        'emoji': '🦊',
+        'name': 'ګیدړ',
+        'info':
+            'ګیدړ یو کوچنی او هوښیار ځنګلي حیوان دی. '
+            'د ګیدړ لکۍ اوږده او ښکلې وي. '
+            'ګیدړان کوچني حیوانات، مرغان، مېوې او نور خواړه خوري.',
+      },
+      {
+        'emoji': '🐒',
+        'name': 'بیزو',
+        'info':
+            'بیزو ډېر فعال او هوښیار حیوان دی. '
+            'ډېری بیزوګان په ونو کې ژوند کوي. '
+            'دوی مېوې، پاڼې، تخمونه او ځینې کوچني ژوي خوري.',
+      },
+      {
+        'emoji': '🦒',
+        'name': 'زرافه',
+        'info':
+            'زرافه د نړۍ تر ټولو اوږده ځمکنی حیوان بلل کېږي. '
+            'اوږده غاړه او اوږدې پښې لري. '
+            'زرافه د ونو له لوړو پاڼو څخه خواړه اخلي.',
+      },
+      {
+        'emoji': '🦓',
+        'name': 'زیبرا',
+        'info':
+            'زیبرا د آس په څېر حیوان دی چې پر بدن تورې او سپینې کرښې لري. '
+            'زیبرا په افریقا کې ژوند کوي او واښه خوري. '
+            'هره زیبرا خپلې ځانګړې کرښې لري.',
+      },
+      {
+        'emoji': '🦏',
+        'name': 'کرګدن',
+        'info':
+            'کرګدن یو ډېر لوی او قوي حیوان دی. '
+            'پر پوزه یې یو یا دوه ښکرونه وي. '
+            'کرګدن عموماً واښه او بوټي خوري.',
+      },
+      {
+        'emoji': '🦛',
+        'name': 'اسماني غویی',
+        'info':
+            'اسماني غویی یو لوی او قوي حیوان دی چې ډېر وخت په اوبو کې تېروي. '
+            'دا حیوان په افریقا کې ژوند کوي او واښه خوري. '
+            'سره له دې چې دروند ښکاري، په اوبو کې ښه حرکت کوي.',
+      },
+      {
+        'emoji': '🐊',
+        'name': 'تمساح',
+        'info':
+            'تمساح یو لوی خزنده حیوان دی. '
+            'په اوبو او د اوبو په شاوخوا کې ژوند کوي. '
+            'تمساح قوي غاښونه لري او غوښه خوري.',
+      },
+      {
+        'emoji': '🐍',
+        'name': 'مار',
+        'info':
+            'مار یو اوږد خزنده حیوان دی چې پښې نه لري. '
+            'ماران په بېلابېلو ځایونو کې ژوند کوي. '
+            'ځینې ماران زهرجن وي او ځینې نور بیا زهر نه لري.',
+      },
+      {
+        'emoji': '🐢',
+        'name': 'شمشتی',
+        'info':
+            'شمشتی یو ورو حرکت کوونکی حیوان دی. '
+            'پر شا یې کلک پوښ وي چې بدن یې ساتي. '
+            'شمشتیان بوټي او ځینې نور کوچني خواړه خوري.',
+      },
+      {
+        'emoji': '🐬',
+        'name': 'دولفین',
+        'info':
+            'دولفین یو هوښیار سمندري حیوان دی. '
+            'دولفینان په ډلو کې ژوند کوي او د یو بل سره اړیکه نیسي. '
+            'دوی د لامبو ډېر ښه مهارت لري.',
+      },
+      {
+        'emoji': '🐋',
+        'name': 'نهنګ',
+        'info':
+            'نهنګ د نړۍ له تر ټولو لویو حیواناتو څخه دی. '
+            'په سمندرونو کې ژوند کوي. '
+            'د نهنګ ځینې ډولونه ډېر لوی بدن لري او د اوبو پر سر ساه اخلي.',
+      },
+      {
+        'emoji': '🦅',
+        'name': 'عقاب',
+        'info':
+            'عقاب یو پیاوړی ښکار کوونکی مرغه دی. '
+            'قوي وزرونه او تېزې پنجې لري. '
+            'عقاب کولی شي په لوړو اسمانونو کې ډېر لوړ الوتنه وکړي.',
+      },
+      {
+        'emoji': '🦜',
+        'name': 'طوطي',
+        'info':
+            'طوطي یو ښکلی او رنګین مرغه دی. '
+            'ځینې طوطيان د انسانانو ځینې غږونه تقلید کولی شي. '
+            'طوطي مېوې، تخمونه او نور نباتي خواړه خوري.',
+      },
+      {
+        'emoji': '🐴',
+        'name': 'آس',
+        'info':
+            'آس یو قوي او ګړندی کورنی حیوان دی. '
+            'انسانانو له ډېرې مودې راهیسې له آسونو څخه د سفر او کار لپاره ګټه اخیستې. '
+            'آس واښه او نور نباتي خواړه خوري.',
+      },
+      {
+        'emoji': '🐄',
+        'name': 'غوا',
+        'info':
+            'غوا یو مهم کورنی حیوان دی. '
+            'غوا واښه او نور نباتات خوري. '
+            'له غوا څخه شیدې او نور خوراکي توکي ترلاسه کېږي.',
+      },
+    ];
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('حیوانات 🐘'),
+          title: const Text('مشهور حیوانات 🐾'),
           centerTitle: true,
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      '🐘 فیل',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'فیل یو ډېر لوی ځمکنی حیوان دی. '
-                      'فیل اوږده خرطوم او لوی غوږونه لري.',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+        body: ListView.builder(
+          padding: const EdgeInsets.all(12),
+          itemCount: animals.length,
+          itemBuilder: (context, index) {
+            final animal = animals[index];
 
-            Card(
+            return Card(
+              margin: const EdgeInsets.only(bottom: 12),
+              elevation: 3,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      '🦁 زمری',
-                      style: TextStyle(
+                      '${animal['emoji']} ${animal['name']}',
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
-                      'زمری یو پیاوړی ځنګلي حیوان دی. '
-                      'زمری د خپل ځواک او غږ له امله مشهور دی.',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      '🐰 سوی',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                      animal['info']!,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        height: 1.7,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      'سوی یو کوچنی حیوان دی. '
-                      'سوی اوږده غوږونه او چټکې پښې لري.',
-                      style: TextStyle(fontSize: 18),
-                    ),
                   ],
                 ),
               ),
-            ),
-
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      '🐦 مرغه',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'مرغان وزرونه لري او ډېری مرغان الوتلی شي.',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
