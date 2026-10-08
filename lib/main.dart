@@ -258,7 +258,7 @@ class MathPage extends StatelessWidget {
           centerTitle: true,
         ),
         body: Directionality(
-          textDirection: TextDirection.rtl,
+          textDirection: TextDirection.ltr,
           child: GridView.builder(
             padding: const EdgeInsets.all(16),
             gridDelegate:
