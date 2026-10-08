@@ -98,13 +98,33 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            Card(
-              child: ListTile(
-                leading: const Text('🌍'),
-                title: const Text('عمومي معلومات'),
-                subtitle: const Text('ډېر ژر به فعال شي 🚀'),
-              ),
-            ),
+          Card(
+  child: ListTile(
+    leading: const Text(
+      '🌍',
+      style: TextStyle(fontSize: 30),
+    ),
+    title: const Text(
+      'عمومي معلومات',
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    subtitle: const Text(
+      'نړۍ، حیوانات، طبیعت، فضا او ساینس',
+    ),
+    trailing: const Icon(Icons.arrow_back_ios),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const GeneralInfoPage(),
+        ),
+      );
+    },
+  ),
+),
 
             Card(
               child: ListTile(
@@ -285,6 +305,118 @@ class MathPage extends StatelessWidget {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+// ==================== عمومي معلومات ====================
+
+class GeneralInfoPage extends StatelessWidget {
+  const GeneralInfoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('عمومي معلومات 🌍'),
+          centerTitle: true,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🐘',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'حیوانات',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('د حیواناتو په اړه زده کړه'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🌱',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'بوټي او طبیعت',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('د طبیعت په اړه معلومات'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🚀',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'فضا او سیارې',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('لمر، سپوږمۍ او سیارې'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🔬',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'ساده ساینس',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('د ساینس په زړه پورې معلومات'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🌍',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'هېوادونه او نړۍ',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('د نړۍ د هېوادونو په اړه معلومات'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  '🏛️',
+                  style: TextStyle(fontSize: 30),
+                ),
+                title: const Text(
+                  'مشهور ځایونه',
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: const Text('د نړۍ مشهور ځایونه'),
+                trailing: const Icon(Icons.arrow_back_ios),
+              ),
+            ),
+          ],
         ),
       ),
     );
