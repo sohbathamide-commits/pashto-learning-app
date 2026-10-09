@@ -398,21 +398,33 @@ Card(
     },
   ),
 ),
-            // ساینس
             Card(
-              child: ListTile(
-                leading: const Text(
-                  '🔬',
-                  style: TextStyle(fontSize: 30),
-                ),
-                title: const Text(
-                  'ساده ساینس',
-                  style: TextStyle(fontSize: 20),
-                ),
-                subtitle: const Text('د ساینس په زړه پورې معلومات'),
-                trailing: const Icon(Icons.arrow_back_ios),
-              ),
-            ),
+  child: ListTile(
+    leading: const Text(
+      '🔬',
+      style: TextStyle(fontSize: 30),
+    ),
+    title: const Text(
+      'ساده ساینس',
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    subtitle: const Text(
+      'ساینس، طبیعت، انسان او د نړۍ رازونه',
+    ),
+    trailing: const Icon(Icons.arrow_back_ios),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SciencePage(),
+        ),
+      );
+    },
+  ),
+),
 
             // هېوادونه
             Card(
@@ -939,3 +951,91 @@ class SpacePage extends StatelessWidget {
     );
   }
 }
+class SciencePage extends StatelessWidget {
+  const SciencePage({super.key});
+
+  final List<Map<String, String>> topics = const [
+    {
+      'emoji': '🌍',
+      'title': 'ځمکه',
+      'info': 'ځمکه زموږ کور دی. انسانان، حیوانات او نباتات پرې ژوند کوي.',
+    },
+    {
+      'emoji': '🪐',
+      'title': 'جاذبه',
+      'info': 'جاذبه هغه ځواک دی چې شیان د ځمکې پر لور راکاږي.',
+    },
+    {
+      'emoji': '💧',
+      'title': 'اوبه',
+      'info': 'اوبه د انسانانو، حیواناتو او نباتاتو د ژوند لپاره اړینې دي.',
+    },
+    {
+      'emoji': '🌧️',
+      'title': 'باران',
+      'info': 'باران هغه وخت اوري چې د ورېځو د اوبو څاڅکي ځمکې ته راولوېږي.',
+    },
+    {
+      'emoji': '☁️',
+      'title': 'ورېځې',
+      'info': 'ورېځې په هوا کې د اوبو له کوچنیو څاڅکو یا یخنیو بلورونو جوړېږي.',
+    },
+    {
+      'emoji': '💨',
+      'title': 'هوا',
+      'info': 'هوا د بېلابېلو ګازونو ګډوله ده او ژوندي موجودات ترې ګټه اخلي.',
+    },
+    {
+      'emoji': '☀️',
+      'title': 'رڼا',
+      'info': 'رڼا موږ سره مرسته کوي چې شیان ووینو. لمر د ځمکې د رڼا مهمه سرچینه ده.',
+    },
+    {
+      'emoji': '🌈',
+      'title': 'رنګونه',
+      'info': 'سپینه رڼا له بېلابېلو رنګونو جوړه ده. رنګین کمان د رڼا او اوبو له تعامل څخه جوړېږي.',
+    },
+    {
+      'emoji': '🔊',
+      'title': 'غږ',
+      'info': 'غږ د رپېدو له امله پیدا کېږي او د هوا، اوبو یا نورو موادو له لارې خپرېږي.',
+    },
+    {
+      'emoji': '🧲',
+      'title': 'مقناطیس',
+      'info': 'مقناطیس ځینې فلزونه، لکه اوسپنه، ځان ته راکاږي.',
+    },
+    {
+      'emoji': '⚡',
+      'title': 'برېښنا',
+      'info': 'برېښنا د انرژۍ یوه بڼه ده چې د څراغونو او ډېرو وسایلو په چلولو کې کارېږي.',
+    },
+    {
+      'emoji': '🔥',
+      'title': 'تودوخه',
+      'info': 'تودوخه د انرژۍ لېږد دی چې عموماً له ګرم شي څخه سړه خوا ته ځي.',
+    },
+    {
+      'emoji': '🧊',
+      'title': 'یخ او کنګل کېدل',
+      'info': 'اوبه د صفر درجې سانتي ګراد په شاوخوا کې کنګل کېږي، که مناسب فشار ولري.',
+    },
+    {
+      'emoji': '💨',
+      'title': 'تبخیر',
+      'info': 'تبخیر هغه بهیر دی چې مایع، لکه اوبه، په بخار بدلېږي.',
+    },
+    {
+      'emoji': '🌱',
+      'title': 'فوتوسنتیز',
+      'info': 'نباتات د لمر د رڼا، اوبو او کاربن ډای اکسایډ په مرسته خپل خواړه جوړوي.',
+    },
+    {
+      'emoji': '🧍',
+      'title': 'د انسان بدن',
+      'info': 'زړه وینه ګرځوي، سږي په تنفس کې مرسته کوي، مغز د بدن فعالیتونه کنټرولوي، هډوکي بدن ته ملاتړ ورکوي او سترګې د لیدلو لپاره دي.',
+    },
+    {
+      'emoji': '🦠',
+      'title': 'میکروبونه',
+      'info
