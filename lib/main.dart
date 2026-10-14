@@ -1034,14 +1034,13 @@ class SciencePage extends StatelessWidget {
       'emoji': '🧍',
       'title': 'د انسان بدن',
       'info': 'زړه وینه ګرځوي، سږي په تنفس کې مرسته کوي، مغز د بدن فعالیتونه کنټرولوي، هډوکي بدن ته ملاتړ ورکوي او سترګې د لیدلو لپاره دي.',
-    },
+       },
     {
-        {
       'emoji': '🦠',
       'title': 'میکروبونه',
       'info': 'میکروبونه ډېر کوچني موجودات دي. ځینې یې د ناروغیو سبب کېږي او ځینې د انسانانو او چاپېریال لپاره ګټور دي.',
     },
-  ];
+  ];ښ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1065,5 +1064,5 @@ class SciencePage extends StatelessWidget {
         },
       ),
     );
-  }
     }
+}
