@@ -1042,3 +1042,28 @@ class SciencePage extends StatelessWidget {
       'info': 'میکروبونه ډېر کوچني موجودات دي. ځینې یې د ناروغیو سبب کېږي او ځینې د انسانانو او چاپېریال لپاره ګټور دي.',
     },
   ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ساده ساینس 🔬'),
+      ),
+      body: ListView.builder(
+        itemCount: topics.length,
+        itemBuilder: (context, index) {
+          final topic = topics[index];
+          return Card(
+            child: ListTile(
+              leading: Text(
+                topic['emoji']!,
+                style: const TextStyle(fontSize: 28),
+              ),
+              title: Text(topic['title']!),
+              subtitle: Text(topic['info']!),
+            ),
+          );
+        },
+      ),
+    );
+  }
+    }
